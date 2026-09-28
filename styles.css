@@ -434,6 +434,13 @@ html.js .progreso{display:block}
 .legal-sec .legal p{color:var(--gris-texto); font-size:.9rem}
 .legal-sec .legal a{color:var(--verde); padding:4px 0}
 
+/* Un enlace dentro de un texto también tiene que ser cómodo con el dedo. Medido con
+   el revisor: «044 242 72 66» dentro de un párrafo se quedaba en 21 px de alto y lo
+   marcaba como aviso. Estos 4 px de relleno no se ven y le dan los 24 px que pide. */
+p a:not(.btn), address a:not(.btn), .nota-caja a, .ref__nota a{
+  display:inline-block; padding:4px 0}
+.nota-caja a, .ref__nota a{color:var(--verde); text-decoration:underline; text-underline-offset:3px}
+
 /* ══ ADAPTACIÓN A PANTALLAS PEQUEÑAS ══ */
 @media (max-width:1100px){
   .barra__menu{display:none}
