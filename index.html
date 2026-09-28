@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Borrador: no se indexa y no se toca el dominio del cliente hasta que él diga sí -->
+<meta name="robots" content="noindex, nofollow">
+<title>LERI Schreinerei AG Zürich — Innenausbau, Möbel nach Mass, Reparaturservice</title>
+<meta name="description" content="Schreinerei im Zürcher Kreis 4: Innenausbau, Möbel nach Mass und Reparaturservice. Von der Skizze bis zum letzten Schliff — Kanzleistrasse 221, Zürich. Tel. 044 242 72 66.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LERI Schreinerei AG">
+<meta property="og:title" content="LERI Schreinerei AG Zürich — Innenausbau, Möbel nach Mass, Reparaturservice">
+<meta property="og:description" content="Schreinerei im Zürcher Kreis 4: Innenausbau, Möbel nach Mass und Reparaturservice. Von der Skizze bis zum letzten Schliff — Kanzleistrasse 221, Zürich. Tel. 044 242 72 66.">
+<meta property="og:image" content="https://zentraf-official.github.io/leri-schreinerei-v3/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://zentraf-official.github.io/leri-schreinerei-v3/index.html">
+<meta name="theme-color" content="#007B35">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon.png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="preload" as="font" type="font/woff2" href="assets/fuentes/inter-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fuentes/inter-600.woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script>
+  /* Alles, was sich bewegt, startet nur mit JavaScript. Läuft es nicht, zeigt die
+     Seite nach 3 Sekunden alles ohne Animation — niemand sieht eine leere Seite.
+     Und die Ladeschicht hat in styles.css ihr eigenes «[hidden]{display:none}». */
+  document.documentElement.classList.add('js');
+  try {
+    if (sessionStorage.getItem('leri-transicion')) {
+      document.documentElement.classList.add('viene-de-transicion');
+      sessionStorage.removeItem('leri-transicion');
+    }
+  } catch (e) {}
+  setTimeout(function () {
+    if (!window.__leriListo) document.documentElement.classList.remove('js');
+  }, 3000);
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Carpenter",
+  "name": "LERI Schreinerei AG",
+  "description": "Schreinerei in Zürich: Innenausbau, Möbel nach Mass und Reparaturservice.",
+  "image": "https://zentraf-official.github.io/leri-schreinerei-v3/assets/og-image.png",
+  "url": "https://zentraf-official.github.io/leri-schreinerei-v3/index.html",
+  "telephone": "+41442427266",
+  "email": "info@leri-schreinerei.ch",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kanzleistrasse 221",
+    "postalCode": "8004",
+    "addressLocality": "Zürich",
+    "addressCountry": "CH"
+  },
+  "areaServed": { "@type": "City", "name": "Zürich" },
+  "employee": [
+    { "@type": "Person", "name": "Arbnor Begaj", "jobTitle": "Geschäftsleiter" },
+    { "@type": "Person", "name": "Thomas Russer", "jobTitle": "Schreiner, Monteur" },
+    { "@type": "Person", "name": "Martin Bozic", "jobTitle": "Schreiner, CNC-Maschinist" },
+    { "@type": "Person", "name": "Marek Eck", "jobTitle": "Lernender" }
+  ],
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Innenausbau" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Möbel nach Mass" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reparaturservice" } }
+  ]
+}
+</script>
+</head>
+<body>
+
+  <!-- ══ CARGA: una junta de carpintería que se dibuja (CSS y SVG propios) ══ -->
+  <div class="carga" id="carga" hidden>
+    <div class="carga__caja" id="cargaTexto">
+      <img class="carga__logo" src="assets/logo.svg" alt="LERI Schreinerei AG" width="340" height="314">
+      <p class="carga__frase">Ihr Schreiner. <em>Einer für Alles.</em></p>
+      <p class="carga__lema">Schreinerei im Zürcher Kreis 4</p>
+      <svg class="carga__junta" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true">
+        <path class="j1" pathLength="1" vector-effect="non-scaling-stroke"
+              d="M4 26 H118 L136 4 H176 L194 26 H212 L230 4 H270 L288 26 H396"/>
+      </svg>
+      <div class="carga__linea"><i id="cargaBarra"></i></div>
+      <p class="carga__num"><span id="cargaNum">0</span> %</p>
+    </div>
+    <p class="carga__nota">LERI Schreinerei AG · Kanzleistrasse 221 · 8004 Zürich</p>
+  </div>
+
+  <!-- ══ CORTINA ENTRE PÁGINAS ══ -->
+  <div class="velo" id="velo" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+
+  <div class="progreso" id="progreso"></div>
+  <div class="aviso">Entwurf · Vorschau von Zentraf</div>
+
+  <!-- ══ CABECERA EN PASTILLA ══ -->
+  <header class="barra" id="barra">
+    <div class="barra__caja">
+      <a class="barra__logo" href="index.html" aria-label="LERI Schreinerei AG — Startseite">
+        <span class="logo-texto"><svg class="logo-marca" viewBox="29 29 281 180" role="img" aria-label="LERI" width="53" height="34">
+        <path fill="#007B35" d="M29 29h12v168h66v12H29z"/>
+        <path fill="#007B35" d="M115 29h81v12h-69v70h57v9h-57v78h73v11h-85z"/>
+        <path fill="#007B35" d="M298 29h12v180h-12z"/>
+        <g fill="#565655">
+          <path d="M209 29h37c27 0 37 18 37 45 0 27-10 36-28 36h-46v-9h37c15 0 23-11 23-27 0-24-7-33-23-33h-37z"/>
+          <path d="M234 119h14l42 89h-14z"/>
+        </g>
+      </svg><span class="logo-palabra">SCHREINEREI</span></span>
+      </a>
+      <nav class="barra__menu" aria-label="Hauptmenü">
+        <a href="index.html" class="activo">Start</a>
+        <a href="leistungen.html">Leistungen</a>
+        <a href="projekte.html">Projekte</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+      <details class="barra__movil" id="menuMovil">
+        <summary aria-label="Menü öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
+        <div class="barra__panel">
+          <a href="index.html" class="activo">Start</a>
+          <a href="leistungen.html">Leistungen</a>
+          <a href="projekte.html">Projekte</a>
+          <a href="kontakt.html">Kontakt</a>
+        </div>
+      </details>
+      <a class="barra__tel" href="tel:+41442427266"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h2.8l1.5 4.3-1.9 1.4a13.2 13.2 0 0 0 5.9 5.9l1.4-1.9L20.6 14v2.8a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3Z"/></svg><span>044 242 72 66</span></a>
+    </div>
+  </header>
+
+<main>
+  <!-- ══ 2 · HERO ══ -->
+  <section class="hero">
+    <div class="hero__media">
+      <img src="assets/fotos/montage-1800.jpg" alt="Monteur von LERI Schreinerei trägt eine Holzplatte zu einem Einsatz in Zürich" width="1800" height="1200" fetchpriority="high">
+    </div>
+    <div class="hero__velo"></div>
+    <div class="hero__texto">
+      <div class="wrap">
+        <div class="hero__caja">
+          <p class="pastilla pastilla--claro"><i></i>Schreinerei · Zürich Kreis 4</p>
+          <h1 data-lineas>Ihr Schreiner.<br> Einer für Alles.</h1>
+          <p class="hero__sub" data-anim>Innenausbau, Möbel nach Mass und Reparaturservice — von der
+            Skizze bis zum letzten Schliff. Aus unserer eigenen Werkstatt an der Kanzleistrasse 221, mitten in
+            der Stadt Zürich.</p>
+          <div class="hero__acciones" data-anim>
+            <a class="btn btn--verde" href="kontakt.html">Kostenlos anfragen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn btn--claro" href="leistungen.html">Unsere Leistungen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="confianza" data-anim>
+            <div class="confianza__caras">
+              <span><img src="assets/fotos/cara-team-200.jpg" alt="Schreiner von LERI in der Werkstatt" width="200" height="200"></span>
+              <span><img src="assets/fotos/cara-handwerk-200.jpg" alt="Hände eines Schreiners bei der Oberflächenbearbeitung" width="200" height="200"></span>
+              <span><img src="assets/fotos/cara-ausbau-200.jpg" alt="Schrankwand nach Mass aus Holz" width="200" height="200"></span>
+              <span class="es-logo"><img src="assets/logo.svg" alt="LERI Schreinerei AG" width="340" height="314"></span>
+            </div>
+            <p class="confianza__texto">Zu unseren Kunden gehören <b>Kantonsschule Wiedikon</b>,
+              <b>Universitätsspital Zürich</b>, Genossenschaften und Immobilienverwaltungen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero__pie" hidden>
+      <div class="wrap">
+        <span>Kanzleistrasse 221 · 8004 Zürich</span>
+        <span>Seit 2019 unter Arbnor Begaj</span>
+        <span>044 242 72 66</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 3 · ZAHLEN AUS DER FICHE — keine erfundenen Werte ══ -->
+  <section class="sec" id="ueber-uns">
+    <div class="wrap">
+      <div class="cabeza" data-anim>
+        <p class="pastilla"><i></i>Über uns</p>
+        <h2 data-lineas>Zwei Schreinereien, ein Team</h2>
+        <p>LERI ist aus der Zusammenführung von zwei traditionsreichen Zürcher Schreinereien
+           entstanden. Heute sind wir ein eingespieltes Vierer-Team mit eigener Werkstatt und
+           eigenem Montagefahrzeug — mitten im Kreis 4.</p>
+      </div>
+      <div class="cifras__rejilla">
+        <div class="cifras__lista" data-anim>
+          <div class="cifra">
+            <div class="cifra__icono"><b>4+1</b></div>
+            <div>
+              <h3>Schreiner und ein Lernender</h3>
+              <p>Vier gelernte Schreiner und ein Lernender, fest im Betrieb — kein Wechselpersonal,
+                 sondern dieselben Gesichter bei jedem Auftrag.</p>
+            </div>
+          </div>
+          <div class="cifra">
+            <div class="cifra__icono"><b>2019</b></div>
+            <div>
+              <h3>Seit 2019 unter Arbnor Begaj</h3>
+              <p>Er führt die Schreinerei: eidg. dipl. Werkmeister HF und dipl. Betriebsökonom
+                 NDS HF.</p>
+            </div>
+          </div>
+          <div class="cifra">
+            <div class="cifra__icono"><b>CNC</b></div>
+            <div>
+              <h3>Computergesteuerte Maschine im Haus</h3>
+              <p>Handwerk und moderne Technik in derselben Werkstatt: Präzision, die auch bei
+                 Serien passt.</p>
+            </div>
+          </div>
+        </div>
+        <div class="cifras__foto" data-anim>
+          <img src="assets/fotos/portrait-1200.jpg" alt="Arbnor Begaj, Geschäftsleiter der LERI Schreinerei AG, in der Werkstatt" width="1200" height="1126" loading="lazy" style="object-position:50% 18%">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 4 · LEISTUNGEN: sechs Karten mit Foto ══ -->
+  <section class="sec sec--clara" id="leistungen">
+    <div class="wrap">
+      <div class="cabeza" data-anim>
+        <p class="pastilla"><i></i>Leistungen</p>
+        <h2 data-lineas>Was wir für Sie machen</h2>
+        <p>Alles rund ums Holz, aus einer Hand: ein Betrieb, ein Ansprechpartner, eine Werkstatt
+           im Zürcher Kreis 4.</p>
+      </div>
+      <div class="servicios__rejilla">
+        <article class="tarjeta" data-anim>
+          <div class="tarjeta__foto"><img src="assets/fotos/innenausbau-alto-1100.jpg" alt="Einbauschrank und Regalwand nach Mass aus Holz in einer Zürcher Wohnung" width="1100" height="1375" loading="lazy"></div>
+          <div class="tarjeta__cuerpo">
+            <h3>Innenausbau</h3>
+            <p>Küchen, Badezimmer, Schrankwände und Garderoben — massgerecht geplant und
+               umgesetzt, auch mit Erfahrung bei Denkmalschutz und Brandschutz.</p>
+          </div>
+        </article>
+        <article class="tarjeta" data-anim>
+          <div class="tarjeta__foto"><img src="assets/fotos/tisch-900.jpg" alt="Esstisch mit Sitzbank nach Mass in einem Esszimmer" width="480" height="640" loading="lazy"></div>
+          <div class="tarjeta__cuerpo">
+            <h3>Möbel nach Mass</h3>
+            <p>Schränke, Garderoben, Sideboards und Tische, in sorgfältiger Handarbeit für Sie
+               gefertigt — Unikate statt Katalogware.</p>
+          </div>
+        </article>
+        <article class="tarjeta" data-anim>
+          <div class="tarjeta__foto"><img src="assets/fotos/handwerk-2000.jpg" alt="Schreiner bearbeitet eine Holzoberfläche von Hand in der Werkstatt" width="2000" height="1333" loading="lazy"></div>
+          <div class="tarjeta__cuerpo">
+            <h3>Restauration</h3>
+            <p>Alte Lieblingsstücke und Antiquitäten sind bei uns in besten Händen: wir flicken,
+               ergänzen und frischen auf, wo es sinnvoll ist.</p>
+          </div>
+        </article>
+        <article class="tarjeta" data-anim>
+          <div class="tarjeta__foto"><img src="assets/fotos/montage-alto-1100.jpg" alt="Monteur von LERI bei der Montage einer Holzplatte in einem Treppenhaus" width="1100" height="1375" loading="lazy"></div>
+          <div class="tarjeta__cuerpo">
+            <h3>Reparaturservice</h3>
+            <p>Türen, Schlösser, Küchenfronten und Beschläge: rasch und kompetent sorgen wir dafür,
+               dass alles wieder reibungslos funktioniert.</p>
+          </div>
+        </article>
+        <article class="tarjeta" data-anim>
+          <div class="tarjeta__foto"><img src="assets/fotos/furgon-900.jpg" alt="Montagefahrzeug der LERI Schreinerei mit Firmenaufschrift in Zürich" width="640" height="480" loading="lazy"></div>
+          <div class="tarjeta__cuerpo">
+            <h3>Montage mit eigenem Fahrzeug</h3>
+            <p>Wir montieren mit eigenem Wagen, räumen auf und übergeben fertig — erst dann sind
+               wir fertig.</p>
+          </div>
+        </article>
+        <article class="tarjeta" data-anim>
+          <div class="tarjeta__foto"><img src="assets/fotos/innenausbau-2000.jpg" alt="Schrankwand und Einbauten nach Mass in einer Wohnung in Zürich" width="2000" height="1500" loading="lazy"></div>
+          <div class="tarjeta__cuerpo">
+            <h3>Für Verwaltungen und Genossenschaften</h3>
+            <p>Ausbauten, Unterhalt und Instandsetzung in Wohnliegenschaften — auch die Arbeiten
+               beim Mieterwechsel.</p>
+          </div>
+        </article>
+      </div>
+      <p class="servicios__pie" data-anim><a class="btn btn--borde" href="leistungen.html">Alle Leistungen im Detail<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+  </section>
+
+  <!-- ══ 5 · WARUM WIR: drei abwechselnde Zeilen ══ -->
+  <section class="sec" id="warum">
+    <div class="wrap">
+      <div class="cabeza" data-anim>
+        <p class="pastilla"><i></i>Warum LERI</p>
+        <h2 data-lineas>Ihr Schreiner. Einer für Alles.</h2>
+        <p>Kein Zwischenhändler, keine wechselnden Equipen: Sie sprechen mit den Leuten, die Ihre
+           Arbeit auch bauen.</p>
+      </div>
+      <div class="filas">
+        <article class="fila" data-anim>
+          <div class="fila__foto"><img src="assets/fotos/innenausbau-2000.jpg" alt="Nach Mass gebaute Schrankwand mit offenen Regalfächern" width="2000" height="1500" loading="lazy"></div>
+          <div class="fila__texto">
+            <div class="fila__num">01</div>
+            <h3>Ein Ansprechpartner für alles</h3>
+            <p>Ob neue Möbel nach Mass, eine frisch aufgearbeitete Lieblingskommode, eine eingebaute
+               Küche oder die Reparatur, die keinen Aufschub duldet: Sie haben bei uns einen
+               Ansprechpartner für alles.</p>
+            <ul class="lista-puntos">
+              <li>Innenausbau, Möbel und Reparaturen aus einer Hand</li>
+              <li>Eigene Werkstatt an der Kanzleistrasse 221</li>
+              <li>Vier gelernte Schreiner und ein Lernender im festen Team</li>
+              <li>Beratung, Aufmass und Planung inklusive</li>
+            </ul>
+          </div>
+        </article>
+        <article class="fila fila--inversa" data-anim>
+          <div class="fila__foto"><img src="assets/fotos/handwerk-2000.jpg" alt="Oberfläche wird von Hand bearbeitet — Handwerk in der Werkstatt von LERI" width="2000" height="1333" loading="lazy"></div>
+          <div class="fila__texto">
+            <div class="fila__num">02</div>
+            <h3>Handwerk trifft Technik</h3>
+            <p>LERI baut auf Fachwissen und Erfahrung, ergänzt durch moderne Technologie und eine
+               grosse Portion Fingerspitzengefühl. Mit unserer computergesteuerten CNC-Maschine
+               arbeiten wir präzise — auch bei kurzfristigen Terminen.</p>
+            <ul class="lista-puntos">
+              <li>CNC-Maschine im eigenen Haus</li>
+              <li>Oberflächen von Hand bearbeitet</li>
+              <li>Material- und Oberflächenberatung (Massivholz, Furnier, Lack, Öl)</li>
+              <li>Brandschutz-Abschlüsse aus eigener Fertigung</li>
+            </ul>
+          </div>
+        </article>
+        <article class="fila" data-anim>
+          <div class="fila__foto"><img src="assets/fotos/furgon-2-900.jpg" alt="Zweites Montagefahrzeug der LERI Schreinerei vor der Werkstatt" width="640" height="480" loading="lazy"></div>
+          <div class="fila__texto">
+            <div class="fila__num">03</div>
+            <h3>Vom Aufmass bis zur Montage</h3>
+            <p>Wir nehmen uns Zeit, Ihre Ansprüche zu verstehen, bevor wir beraten — und wir sind
+               erst zufrieden, wenn Sie es sind. Wir montieren mit eigenem Fahrzeug und übergeben
+               fertig.</p>
+            <ul class="lista-puntos">
+              <li>Aufmass und Beratung vor Ort</li>
+              <li>Klare Offerte vor dem Bau</li>
+              <li>Fertigung in der eigenen Werkstatt</li>
+              <li>Montage mit eigenem Fahrzeug in der Stadt Zürich</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 6 · SO ARBEITEN WIR: drei Schritte, Nummer im Kreis ══ -->
+  <section class="sec sec--clara" id="ablauf">
+    <div class="wrap">
+      <div class="cabeza" data-anim>
+        <p class="pastilla"><i></i>So arbeiten wir</p>
+        <h2 data-lineas>Von der Skizze<br> bis zum letzten Schliff</h2>
+        <p>Drei Schritte, und Sie wissen, woran Sie sind.</p>
+      </div>
+      <div class="pasos">
+        <article class="paso" data-anim>
+          <div class="paso__foto">
+            <img src="assets/fotos/portrait-1200.jpg" alt="Schreiner von LERI in der Werkstatt an der Kanzleistrasse in Zürich" width="1200" height="1126" loading="lazy" style="object-position:50% 22%">
+            <div class="paso__num">1</div>
+          </div>
+          <div class="paso__cuerpo">
+            <h3>Anrufen oder schreiben</h3>
+            <p>Sie schildern uns Ihr Vorhaben — telefonisch, per Mail oder bei einem Kaffee in der
+               Werkstatt.</p>
+          </div>
+        </article>
+        <article class="paso" data-anim>
+          <div class="paso__foto">
+            <img src="assets/fotos/montage-1800.jpg" alt="Monteur trägt eine Holzplatte zu einem Aufmass-Einsatz" width="1800" height="1200" loading="lazy">
+            <div class="paso__num">2</div>
+          </div>
+          <div class="paso__cuerpo">
+            <h3>Aufmass vor Ort</h3>
+            <p>Wir kommen vorbei, messen auf und besprechen Material, Ausführung und Termin.</p>
+          </div>
+        </article>
+        <article class="paso" data-anim>
+          <div class="paso__foto">
+            <img src="assets/fotos/innenausbau-alto-1100.jpg" alt="Fertig montierter Einbauschrank und Regal nach Mass" width="1100" height="1375" loading="lazy">
+            <div class="paso__num">3</div>
+          </div>
+          <div class="paso__cuerpo">
+            <h3>Offerte, Bau und Montage</h3>
+            <p>Sie erhalten eine klare Offerte. Nach Ihrem Ja bauen wir in der eigenen Werkstatt,
+               montieren und übergeben fertig.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 7 · REFERENZEN — Kunden, die es wirklich gibt. Keine erfundenen Stimmen. ══ -->
+  <section class="sec" id="referenzen">
+    <div class="wrap">
+      <div class="cabeza" data-anim>
+        <p class="pastilla"><i></i>Referenzen</p>
+        <h2 data-lineas>Diese Kunden arbeiten mit uns</h2>
+        <p>Keine erfundenen Stimmen und keine Sterne: hier stehen die Auftraggeber, die uns seit
+           Jahren holen — und wofür.</p>
+      </div>
+      <div class="referencias__rejilla">
+        <article class="ref" data-anim>
+          <div class="ref__marca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div>
+          <p class="ref__tipo">Öffentliche Einrichtungen</p>
+          <h3>Kantonsschule Wiedikon · Universitätsspital Zürich</h3>
+          <p>Schreinerarbeiten für öffentliche Bauten: Ausbauten, Einbauten und Reparaturen im
+             Bestand.</p>
+        </article>
+        <article class="ref" data-anim>
+          <div class="ref__marca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5M6 9.5V21h12V9.5M10 21v-6h4v6"/></svg></div>
+          <p class="ref__tipo">Genossenschaften und Verwaltungen</p>
+          <h3>Wohnliegenschaften in der Stadt Zürich</h3>
+          <p>Ausbauten und Reparaturen in Liegenschaften, Arbeiten beim Mieterwechsel und für
+             Immobilienverwaltungen — im Unterhalt und in der Instandsetzung.</p>
+        </article>
+        <article class="ref" data-anim>
+          <div class="ref__marca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16v12H4zM3 9l1.5-5h15L21 9M9 21v-6h6v6"/></svg></div>
+          <p class="ref__tipo">Firmen und Ladenlokale</p>
+          <h3>u. a. Starbucks Kreuzplatz</h3>
+          <p>Tresen, Einbauten und Möbel für Läden, Büros und Gastronomiebetriebe — nach Mass
+             gefertigt und montiert.</p>
+        </article>
+      </div>
+      <p class="ref__nota" data-anim>Dazu Architekten und Bauleiter sowie viele Privatpersonen, die seit
+        Jahren mit uns arbeiten. Gerne zeigen wir Ihnen weitere Referenzen und Muster bei einem Kaffee
+        in der Werkstatt.</p>
+      <p class="servicios__pie" data-anim><a class="btn btn--borde" href="projekte.html">Projekte ansehen<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+  </section>
+
+  <!-- ══ 8 · HÄUFIGE FRAGEN — nur, was wir wirklich sagen können ══ -->
+  <section class="sec sec--clara" id="fragen">
+    <div class="wrap">
+      <div class="cabeza" data-anim>
+        <p class="pastilla"><i></i>Häufige Fragen</p>
+        <h2 data-lineas>Was uns oft gefragt wird</h2>
+        <p>Antworten, die wir auch am Telefon geben — ohne Versprechen, die wir nicht halten können.</p>
+      </div>
+      <div class="faq">
+        <details data-anim>
+          <summary>Wie erhalte ich eine Offerte für mein Projekt?<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary>
+          <div class="faq__cuerpo">
+            <p>Rufen Sie uns an unter <a href="tel:+41442427266">044 242 72 66</a>, schreiben Sie an
+               <a href="mailto:info@leri-schreinerei.ch">info@leri-schreinerei.ch</a> oder kommen Sie in der Werkstatt vorbei. Wir schauen
+               uns Ihr Vorhaben an, messen bei Bedarf vor Ort auf und stellen Ihnen danach eine
+               Offerte zusammen. Wie lange das dauert, hängt vom Umfang des Projekts ab — wir sagen
+               Ihnen offen, womit Sie rechnen können.</p>
+          </div>
+        </details>
+        <details data-anim>
+          <summary>Übernehmen Sie auch kleinere Arbeiten und Reparaturen?<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary>
+          <div class="faq__cuerpo">
+            <p>Ja. Küchenfronten richten, Beschläge ersetzen, Türschlösser flicken, Schäden durch
+               Wasser oder Glasbruch und Kleinreparaturen beim Mieterwechsel gehören bei uns zum
+               Alltag.</p>
+          </div>
+        </details>
+        <details data-anim>
+          <summary>Arbeiten Sie für Verwaltungen, Genossenschaften und öffentliche Einrichtungen?<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary>
+          <div class="faq__cuerpo">
+            <p>Ja. Zu unseren Kunden zählen öffentliche Einrichtungen (u. a. Kantonsschule Wiedikon
+               und Universitätsspital Zürich), Genossenschaften und Immobilienverwaltungen. Wir
+               arbeiten beim Mieterwechsel, im Unterhalt und in der Instandsetzung von
+               Liegenschaften.</p>
+          </div>
+        </details>
+        <details data-anim>
+          <summary>Können Sie Brandschutz-Abschlüsse und Arbeiten unter Denkmalschutz ausführen?<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary>
+          <div class="faq__cuerpo">
+            <p>Ja. Das Anfertigen und Montieren von Brandschutz-Abschlüssen gehört bei uns zum Alltag,
+               und wir haben Erfahrung im Umgang mit Denkmalschutz-Vorschriften.</p>
+          </div>
+        </details>
+        <details data-anim>
+          <summary>Kann ich in die Werkstatt kommen und meine Idee zeigen?<i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></i></summary>
+          <div class="faq__cuerpo">
+            <p>Sehr gerne. Werkstattbesuche und Aufmasse machen wir nach Vereinbarung — am besten
+               kurz anrufen, dann sind wir garantiert da. Sie finden uns an der Kanzleistrasse 221 im Zürcher
+               Kreis 4.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 9 · SCHLUSSANRUF ══ -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="cta" data-anim>
+        <div class="cta__media"><img src="assets/fotos/montage-1800.jpg" alt="" width="1800" height="1200" loading="lazy"></div>
+        <div class="cta__velo"></div>
+        <div class="cta__panel">
+          <p class="pastilla"><i></i>Kontakt</p>
+          <h2 data-lineas>Sprechen wir über Ihr Projekt.</h2>
+          <p>Rufen Sie an, schreiben Sie eine Mail oder kommen Sie in der Werkstatt vorbei, mitten
+             im Zürcher Kreis 4. Wir laden Sie gerne zu einem Kaffee ein.</p>
+          <div class="cta__acciones">
+            <a class="btn btn--verde" href="tel:+41442427266"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3h2.8l1.5 4.3-1.9 1.4a13.2 13.2 0 0 0 5.9 5.9l1.4-1.9L20.6 14v2.8a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 4.6 5.2 2 2 0 0 1 6.6 3Z"/></svg>044 242 72 66</a>
+            <a class="btn btn--borde" href="kontakt.html">Anfrage senden<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <!-- ══ PIE ══ -->
+  <footer class="pie">
+    <div class="wrap">
+      <div class="pie__top">
+        <div class="pie__marca">
+          <img src="assets/logo-blanco.svg" alt="LERI Schreinerei AG" width="340" height="314">
+          <p>Innenausbau, Möbel nach Mass und Reparaturservice aus unserer eigenen Werkstatt an der
+             Kanzleistrasse 221 im Zürcher Kreis 4.</p>
+        </div>
+        <div>
+          <h5>Leistungen</h5>
+          <div class="pie__lista">
+            <a href="leistungen.html#innenausbau">Innenausbau</a>
+            <a href="leistungen.html#moebel">Möbel nach Mass</a>
+            <a href="leistungen.html#reparatur">Reparaturservice</a>
+            <a href="leistungen.html#moebel">Restaurationen</a>
+            <a href="leistungen.html#innenausbau">Brandschutz-Abschlüsse</a>
+          </div>
+        </div>
+        <div>
+          <h5>Unternehmen</h5>
+          <div class="pie__lista">
+            <a href="index.html">Start</a>
+            <a href="leistungen.html">Leistungen</a>
+            <a href="projekte.html">Projekte und Referenzen</a>
+            <a href="kontakt.html">Kontakt</a>
+            <a href="kontakt.html#impressum">Impressum</a>
+            <a href="kontakt.html#datenschutz">Datenschutz</a>
+          </div>
+        </div>
+        <div>
+          <h5>Kontakt</h5>
+          <div class="pie__lista">
+            <a class="destacado" href="tel:+41442427266">044 242 72 66</a>
+            <a href="tel:+41797827080">Mobile 079 782 70 80</a>
+            <a href="mailto:info@leri-schreinerei.ch">info@leri-schreinerei.ch</a>
+            <p>LERI Schreinerei AG<br> Kanzleistrasse 221<br> 8004 Zürich</p>
+          </div>
+        </div>
+      </div>
+      <div class="pie__legal">
+        <details>
+          <summary>Impressum</summary>
+          <div class="legal">
+            <p>LERI Schreinerei AG · Kanzleistrasse 221 · 8004 Zürich · Schweiz<br> 
+               Telefon 044 242 72 66 · Mobile 079 782 70 80 · info@leri-schreinerei.ch</p>
+            <p>Vertretungsberechtigt: Arbnor Begaj, Geschäftsleiter, eidg. dipl. Werkmeister HF,
+               dipl. Betriebsökonom NDS HF.</p>
+            <p>Handelsregister- und MWST-Nummer ergänzen wir gerne auf Angabe des Kunden.</p>
+          </div>
+        </details>
+        <details id="datenschutz">
+          <summary>Datenschutz</summary>
+          <div class="legal">
+            <p>Wir erheben nur die Daten, die Sie uns über das Kontaktformular, per E-Mail oder
+               telefonisch mitteilen (Name, Kontaktdaten, Projektbeschreibung). Diese Angaben
+               verwenden wir ausschliesslich zur Bearbeitung Ihrer Anfrage und geben sie nicht an
+               Dritte weiter.</p>
+            <p>Diese Website setzt keine Cookies zu Werbezwecken und benutzt keine Analyse- oder
+               Tracking-Dienste. Sie können jederzeit Auskunft über Ihre gespeicherten Daten oder
+               deren Löschung verlangen: <a href="mailto:info@leri-schreinerei.ch">info@leri-schreinerei.ch</a>.</p>
+          </div>
+        </details>
+        <div class="pie__credito">
+          <span>© <span class="anio">2026</span> LERI Schreinerei AG · Entwurf und Umsetzung: Zentraf</span>
+          <span>Diese Vorschau ist nicht öffentlich verlinkt und nicht indexiert.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ VISTA AMPLIADA ══ -->
+  <div class="luz" id="luz" hidden role="dialog" aria-modal="true" aria-label="Bildansicht">
+    <button id="luzCerrar" type="button" aria-label="Schliessen">✕</button>
+    <img id="luzImg" src="" alt="">
+    <p id="luzCap"></p>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>

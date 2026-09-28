@@ -1,0 +1,7 @@
+# LERI Schreinerei AG — web v3 (Entwurf, Vorschau von Zentraf).
+# Diese Fassung ist ein Entwurf und wird nicht indexiert. Der Domainname des
+# Kunden bleibt unberührt, bis er der Veröffentlichung zustimmt.
+User-agent: *
+Disallow: /
+
+Sitemap: https://zentraf-official.github.io/leri-schreinerei-v3/sitemap.xml

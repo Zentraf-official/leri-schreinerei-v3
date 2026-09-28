@@ -1,0 +1,8 @@
+# Material de trabajo: no se publica.
+# Los originales y el material sin tratar viven en la carpeta del cliente
+# (leri-schreinerei/), no en el repositorio de la web.
+fotos-originales/
+video/
+*.psd
+*.mov
+.DS_Store

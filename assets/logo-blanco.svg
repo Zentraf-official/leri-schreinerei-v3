@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mismo logotipo de LERI Schreinerei AG, versión para fondos oscuros:
+     L, E, I en blanco; la R (gris en el original) en gris claro; SCHREINEREI en gris claro. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 314" role="img" aria-label="LERI Schreinerei AG">
+  <title>LERI Schreinerei AG</title>
+  <path fill="#FFFFFF" d="M29 29h12v168h66v12H29z"/>
+  <path fill="#FFFFFF" d="M115 29h81v12h-69v70h57v9h-57v78h73v11h-85z"/>
+  <path fill="#FFFFFF" d="M298 29h12v180h-12z"/>
+  <g fill="#B4B4B4">
+    <path d="M209 29h37c27 0 37 18 37 45 0 27-10 36-28 36h-46v-9h37c15 0 23-11 23-27 0-24-7-33-23-33h-37z"/>
+    <path d="M234 119h14l42 89h-14z"/>
+  </g>
+  <text x="29" y="283" fill="#B4B4B4" font-family="HelveticaNeue-Light,'Helvetica Neue',Helvetica,Arial,sans-serif"
+        font-size="66" font-weight="300" textLength="281" lengthAdjust="spacingAndGlyphs">SCHREINEREI</text>
+</svg>
