@@ -1,13 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="LERI Schreinerei">
-  <rect width="512" height="512" fill="#0e0e0e"/>
-  <rect width="512" height="22" fill="#007B35"/>
-  <g transform="translate(14.7 86.7) scale(1.424)">
-    <path fill="#FFFFFF" d="M29 29h12v168h66v12H29z"/>
-    <path fill="#FFFFFF" d="M115 29h81v12h-69v70h57v9h-57v78h73v11h-85z"/>
-    <path fill="#FFFFFF" d="M298 29h12v180h-12z"/>
-    <g fill="#B4B4B4">
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Icono de la web: el logotipo REAL de LERI Schreinerei AG (su verde #007B35 y su
+     gris #565655, y su R sin asta izquierda). Misma geometría que logo.svg, encuadrada
+     en un cuadrado para que sirva de favicon. Ningún monograma inventado. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="LERI Schreinerei AG">
+  <title>LERI Schreinerei AG</title>
+  <rect width="512" height="512" rx="96" fill="#ffffff"/>
+  <svg x="46" y="66" width="420" height="380" viewBox="29 29 281 254" preserveAspectRatio="xMidYMid meet">
+    <path fill="#007B35" d="M29 29h12v168h66v12H29z"/>
+    <path fill="#007B35" d="M115 29h81v12h-69v70h57v9h-57v78h73v11h-85z"/>
+    <path fill="#007B35" d="M298 29h12v180h-12z"/>
+    <g fill="#565655">
       <path d="M209 29h37c27 0 37 18 37 45 0 27-10 36-28 36h-46v-9h37c15 0 23-11 23-27 0-24-7-33-23-33h-37z"/>
       <path d="M234 119h14l42 89h-14z"/>
     </g>
-  </g>
+    <text x="29" y="283" fill="#565655"
+          font-family="HelveticaNeue-Light,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          font-size="66" font-weight="300" textLength="281" lengthAdjust="spacingAndGlyphs">SCHREINEREI</text>
+  </svg>
 </svg>

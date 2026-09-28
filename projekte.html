@@ -17,8 +17,9 @@
 <meta property="og:url" content="https://zentraf-official.github.io/leri-schreinerei-v3/projekte.html">
 <meta name="theme-color" content="#007B35">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32">
 <link rel="icon" href="assets/favicon.png" sizes="512x512">
-<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="assets/fuentes/inter-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fuentes/inter-600.woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
@@ -91,7 +92,9 @@
   <div class="velo" id="velo" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
 
   <div class="progreso" id="progreso"></div>
-  <div class="aviso">Entwurf · Vorschau von Zentraf</div>
+  <!-- Aquí iba el cartel FIJO «Entwurf · Vorschau von Zentraf», flotando en la esquina
+       mientras se hacía scroll. El socio pidió quitarlo: ahora es la última línea del
+       pie (ver PIE → .pie__zentraf), con el enlace a la web de la agencia. -->
 
   <!-- ══ CABECERA EN PASTILLA ══ -->
   <header class="barra" id="barra">
@@ -142,48 +145,276 @@
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="galerie">
     <div class="wrap">
       <div class="cabeza" data-anim>
         <p class="pastilla"><i></i>Aus der Werkstatt</p>
         <h2 data-lineas>Was wir bauen</h2>
-        <p>Eigene Aufnahmen aus unserer Werkstatt und von Montagen in der Stadt Zürich. Klicken Sie
-           ein Bild an, um es gross zu sehen.</p>
+        <p>Eigene Aufnahmen unserer eigenen Arbeiten — Innenausbauten, Möbel nach Mass, Montagen,
+           Maschinen und unser Team. Alles stammt aus unserer Werkstatt an der Kanzleistrasse 221;
+           keine gekauften Bilder. Klicken Sie ein Bild an, um es gross zu sehen.</p>
       </div>
-      <div class="galeria">
-        <button class="pieza pieza--ancha" type="button" data-src="assets/fotos/innenausbau-2000.jpg" data-cap="Innenausbau · Schrankwand nach Mass">
-          <img src="assets/fotos/innenausbau-2000.jpg" alt="Schrankwand mit offenen Regalfächern nach Mass in einer Wohnung" width="2000" height="1500" loading="lazy">
-          <span class="pieza__cap">Innenausbau · Schrankwand nach Mass</span>
-        </button>
-        <button class="pieza pieza--ancha" type="button" data-src="assets/fotos/montage-1800.jpg" data-cap="Montage · eigener Wagen">
-          <img src="assets/fotos/montage-1800.jpg" alt="Monteur trägt eine Holzplatte zu einem Montageeinsatz in Zürich" width="1800" height="1200" loading="lazy">
-          <span class="pieza__cap">Montage · eigener Wagen</span>
-        </button>
-        <button class="pieza " type="button" data-src="assets/fotos/handwerk-2000.jpg" data-cap="Handarbeit · Oberfläche">
-          <img src="assets/fotos/handwerk-2000.jpg" alt="Hände eines Schreiners beim Bearbeiten einer Holzoberfläche" width="2000" height="1333" loading="lazy">
-          <span class="pieza__cap">Handarbeit · Oberfläche</span>
-        </button>
-        <button class="pieza pieza--alta" type="button" data-src="assets/fotos/innenausbau-alto-1100.jpg" data-cap="Innenausbau · Einbauten">
-          <img src="assets/fotos/innenausbau-alto-1100.jpg" alt="Einbauschrank nach Mass mit Regal in einer Zimmerecke" width="1100" height="1375" loading="lazy">
-          <span class="pieza__cap">Innenausbau · Einbauten</span>
-        </button>
-        <button class="pieza pieza--alta" type="button" data-src="assets/fotos/tisch-900.jpg" data-cap="Möbel · Esstisch und Bank">
-          <img src="assets/fotos/tisch-900.jpg" alt="Massiver Esstisch mit Sitzbank nach Mass" width="480" height="640" loading="lazy">
-          <span class="pieza__cap">Möbel · Esstisch und Bank</span>
-        </button>
-        <button class="pieza pieza--alta" type="button" data-src="assets/fotos/montage-alto-1100.jpg" data-cap="Montage im Treppenhaus">
-          <img src="assets/fotos/montage-alto-1100.jpg" alt="Monteur von LERI bringt eine Platte in ein Treppenhaus" width="1100" height="1375" loading="lazy">
-          <span class="pieza__cap">Montage im Treppenhaus</span>
-        </button>
-        <button class="pieza " type="button" data-src="assets/fotos/portrait-1200.jpg" data-cap="Team · Werkstatt Kreis 4">
-          <img src="assets/fotos/portrait-1200.jpg" alt="Schreiner von LERI in der Werkstatt an der Kanzleistrasse" width="1200" height="1126" loading="lazy">
-          <span class="pieza__cap">Team · Werkstatt Kreis 4</span>
-        </button>
-        <button class="pieza " type="button" data-src="assets/fotos/furgon-900.jpg" data-cap="Unser Montagefahrzeug">
-          <img src="assets/fotos/furgon-900.jpg" alt="Montagefahrzeug der LERI Schreinerei mit Firmenaufschrift" width="640" height="480" loading="lazy">
-          <span class="pieza__cap">Unser Montagefahrzeug</span>
-        </button>
+    </div>
+
+  <div class="tiras" id="tiras">
+    <!-- tira A · Innenausbau und Möbel · una copia mide 3136 px -->
+    <div class="tira tira--a">
+      <div class="tira__pista" style="--alto: 330px">
+          <button class="tira__pieza" type="button" style="--w: 440px"
+                  data-src="assets/galeria/teekueche-1400.jpg" data-cap="Innenausbau · Teeküche">
+            <img src="assets/galeria/peq/teekueche-700.jpg" alt="Teeküche mit Edelstahlrückwand, Holzfronten und schwarzer Ablage" width="700" height="525">
+            <span class="tira__cap">Innenausbau · Teeküche</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px"
+                  data-src="assets/galeria/einbauten-treppe-1400.jpg" data-cap="Innenausbau · Einbauten und Treppe">
+            <img src="assets/galeria/peq/einbauten-treppe-700.jpg" alt="Holzeinbauten mit Sitzbank, Treppe mit Terrazzostufen und Regalwand" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Einbauten und Treppe</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 248px"
+                  data-src="assets/galeria/bibliothek-1400.jpg" data-cap="Möbel · Regalwand nach Mass">
+            <img src="assets/galeria/peq/bibliothek-700.jpg" alt="Regalwand nach Mass mit Büchern und Bildern an einer weissen Wand" width="700" height="933" loading="lazy" decoding="async">
+            <span class="tira__cap">Möbel · Regalwand nach Mass</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px"
+                  data-src="assets/galeria/regal-schraege-1400.jpg" data-cap="Innenausbau · Regal und Schrankfronten">
+            <img src="assets/galeria/peq/regal-schraege-700.jpg" alt="Offenes Holzregal unter der Dachschräge neben weissen Schrankfronten" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Regal und Schrankfronten</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 248px"
+                  data-src="assets/galeria/schrankwand-treppenhaus-1400.jpg" data-cap="Innenausbau · Schrankwand im Treppenhaus">
+            <img src="assets/galeria/peq/schrankwand-treppenhaus-700.jpg" alt="Holzfronten einer Schrankwand im Treppenhaus unter einem Oberlicht" width="700" height="933" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Schrankwand im Treppenhaus</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px"
+                  data-src="assets/galeria/garderobe-1400.jpg" data-cap="Innenausbau · Garderobe mit Sitzbank">
+            <img src="assets/galeria/peq/garderobe-700.jpg" alt="Garderobe mit durchgehender Holzbank und Hakenleiste unter der Decke" width="640" height="480" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Garderobe mit Sitzbank</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px"
+                  data-src="assets/galeria/moebel-werkstatt-1400.jpg" data-cap="Möbel · in der Werkstatt gebaut">
+            <img src="assets/galeria/peq/moebel-werkstatt-700.jpg" alt="Neu gebautes Möbel aus Eiche auf Böcken in der Werkstatt" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Möbel · in der Werkstatt gebaut</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px"
+                  data-src="assets/galeria/kueche-1400.jpg" data-cap="Innenausbau · Küche nach Mass">
+            <img src="assets/galeria/peq/kueche-700.jpg" alt="Küche mit weissen Fronten, Steinabdeckung und Blick ins Grüne" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Küche nach Mass</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/teekueche-1400.jpg" data-cap="Innenausbau · Teeküche">
+            <img src="assets/galeria/peq/teekueche-700.jpg" alt="Teeküche mit Edelstahlrückwand, Holzfronten und schwarzer Ablage" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Teeküche</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/einbauten-treppe-1400.jpg" data-cap="Innenausbau · Einbauten und Treppe">
+            <img src="assets/galeria/peq/einbauten-treppe-700.jpg" alt="Holzeinbauten mit Sitzbank, Treppe mit Terrazzostufen und Regalwand" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Einbauten und Treppe</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 248px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/bibliothek-1400.jpg" data-cap="Möbel · Regalwand nach Mass">
+            <img src="assets/galeria/peq/bibliothek-700.jpg" alt="Regalwand nach Mass mit Büchern und Bildern an einer weissen Wand" width="700" height="933" loading="lazy" decoding="async">
+            <span class="tira__cap">Möbel · Regalwand nach Mass</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/regal-schraege-1400.jpg" data-cap="Innenausbau · Regal und Schrankfronten">
+            <img src="assets/galeria/peq/regal-schraege-700.jpg" alt="Offenes Holzregal unter der Dachschräge neben weissen Schrankfronten" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Regal und Schrankfronten</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 248px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/schrankwand-treppenhaus-1400.jpg" data-cap="Innenausbau · Schrankwand im Treppenhaus">
+            <img src="assets/galeria/peq/schrankwand-treppenhaus-700.jpg" alt="Holzfronten einer Schrankwand im Treppenhaus unter einem Oberlicht" width="700" height="933" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Schrankwand im Treppenhaus</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/garderobe-1400.jpg" data-cap="Innenausbau · Garderobe mit Sitzbank">
+            <img src="assets/galeria/peq/garderobe-700.jpg" alt="Garderobe mit durchgehender Holzbank und Hakenleiste unter der Decke" width="640" height="480" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Garderobe mit Sitzbank</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/moebel-werkstatt-1400.jpg" data-cap="Möbel · in der Werkstatt gebaut">
+            <img src="assets/galeria/peq/moebel-werkstatt-700.jpg" alt="Neu gebautes Möbel aus Eiche auf Böcken in der Werkstatt" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Möbel · in der Werkstatt gebaut</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 440px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/kueche-1400.jpg" data-cap="Innenausbau · Küche nach Mass">
+            <img src="assets/galeria/peq/kueche-700.jpg" alt="Küche mit weissen Fronten, Steinabdeckung und Blick ins Grüne" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Küche nach Mass</span>
+          </button>
       </div>
+    </div>
+    <!-- tira B · Werkstatt und Maschinen · una copia mide 2948 px -->
+    <div class="tira tira--b">
+      <div class="tira__pista" style="--alto: 272px">
+          <button class="tira__pieza" type="button" style="--w: 363px"
+                  data-src="assets/galeria/kantenanleimmaschine-1400.jpg" data-cap="Werkstatt · Kantenanleimmaschine">
+            <img src="assets/galeria/peq/kantenanleimmaschine-700.jpg" alt="Kantenanleimmaschine mit Absaugung in unserer Werkstatt" width="640" height="480">
+            <span class="tira__cap">Werkstatt · Kantenanleimmaschine</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 363px"
+                  data-src="assets/galeria/plattensaege-1400.jpg" data-cap="Werkstatt · Plattensäge">
+            <img src="assets/galeria/peq/plattensaege-700.jpg" alt="Vertikale Plattensäge mit einem Stapel Holzplatten" width="640" height="480" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Plattensäge</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px"
+                  data-src="assets/galeria/hobeln-hand-1400.jpg" data-cap="Handarbeit · Hobeln von Hand">
+            <img src="assets/galeria/peq/hobeln-hand-700.jpg" alt="Hände mit Handschuhen beim Hobeln eines Holzbrettes von Hand" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Handarbeit · Hobeln von Hand</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px"
+                  data-src="assets/galeria/saegeblatt-1400.jpg" data-cap="Werkstatt · Maschine im Einsatz">
+            <img src="assets/galeria/peq/saegeblatt-700.jpg" alt="Sägeblatt einer Maschine im Einsatz, mit Absaugung" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Maschine im Einsatz</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px"
+                  data-src="assets/galeria/cnc-steuerung-1400.jpg" data-cap="Werkstatt · CNC-Steuerung">
+            <img src="assets/galeria/peq/cnc-steuerung-700.jpg" alt="Steuerpult der CNC-Maschine mit Tastatur und Bildschirm" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · CNC-Steuerung</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 182px"
+                  data-src="assets/galeria/werkzeug-1400.jpg" data-cap="Werkstatt · Werkzeug">
+            <img src="assets/galeria/peq/werkzeug-700.jpg" alt="Rote Schraubenzieher in einer Reihe auf der Werkbank" width="700" height="1048" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Werkzeug</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px"
+                  data-src="assets/galeria/werkstatt-zu-zweit-1400.jpg" data-cap="Werkstatt · zu zweit an der Maschine">
+            <img src="assets/galeria/peq/werkstatt-zu-zweit-700.jpg" alt="Zwei Schreiner von LERI prüfen ein Werkstück an der Maschine" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · zu zweit an der Maschine</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px"
+                  data-src="assets/galeria/kantenanleimen-1400.jpg" data-cap="Werkstatt · Kantenanleimen">
+            <img src="assets/galeria/peq/kantenanleimen-700.jpg" alt="Schreiner mit Gehörschutz beim Kantenanleimen an der Maschine" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Kantenanleimen</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 363px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/kantenanleimmaschine-1400.jpg" data-cap="Werkstatt · Kantenanleimmaschine">
+            <img src="assets/galeria/peq/kantenanleimmaschine-700.jpg" alt="Kantenanleimmaschine mit Absaugung in unserer Werkstatt" width="640" height="480" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Kantenanleimmaschine</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 363px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/plattensaege-1400.jpg" data-cap="Werkstatt · Plattensäge">
+            <img src="assets/galeria/peq/plattensaege-700.jpg" alt="Vertikale Plattensäge mit einem Stapel Holzplatten" width="640" height="480" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Plattensäge</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/hobeln-hand-1400.jpg" data-cap="Handarbeit · Hobeln von Hand">
+            <img src="assets/galeria/peq/hobeln-hand-700.jpg" alt="Hände mit Handschuhen beim Hobeln eines Holzbrettes von Hand" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Handarbeit · Hobeln von Hand</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/saegeblatt-1400.jpg" data-cap="Werkstatt · Maschine im Einsatz">
+            <img src="assets/galeria/peq/saegeblatt-700.jpg" alt="Sägeblatt einer Maschine im Einsatz, mit Absaugung" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Maschine im Einsatz</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/cnc-steuerung-1400.jpg" data-cap="Werkstatt · CNC-Steuerung">
+            <img src="assets/galeria/peq/cnc-steuerung-700.jpg" alt="Steuerpult der CNC-Maschine mit Tastatur und Bildschirm" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · CNC-Steuerung</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 182px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/werkzeug-1400.jpg" data-cap="Werkstatt · Werkzeug">
+            <img src="assets/galeria/peq/werkzeug-700.jpg" alt="Rote Schraubenzieher in einer Reihe auf der Werkbank" width="700" height="1048" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Werkzeug</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/werkstatt-zu-zweit-1400.jpg" data-cap="Werkstatt · zu zweit an der Maschine">
+            <img src="assets/galeria/peq/werkstatt-zu-zweit-700.jpg" alt="Zwei Schreiner von LERI prüfen ein Werkstück an der Maschine" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · zu zweit an der Maschine</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 408px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/kantenanleimen-1400.jpg" data-cap="Werkstatt · Kantenanleimen">
+            <img src="assets/galeria/peq/kantenanleimen-700.jpg" alt="Schreiner mit Gehörschutz beim Kantenanleimen an der Maschine" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Werkstatt · Kantenanleimen</span>
+          </button>
+      </div>
+    </div>
+    <!-- tira C · Montage, Team und Fahrzeug · una copia mide 3270 px -->
+    <div class="tira tira--c">
+      <div class="tira__pista" style="--alto: 312px">
+          <button class="tira__pieza" type="button" style="--w: 468px"
+                  data-src="assets/galeria/montage-treppenhaus-1400.jpg" data-cap="Montage · Platte im Treppenhaus">
+            <img src="assets/galeria/peq/montage-treppenhaus-700.jpg" alt="Monteur trägt eine Holzplatte über die Treppe zu einem Einsatz" width="700" height="467">
+            <span class="tira__cap">Montage · Platte im Treppenhaus</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 468px"
+                  data-src="assets/galeria/montage-werkzeug-1400.jpg" data-cap="Montage · Werkzeug wird geladen">
+            <img src="assets/galeria/peq/montage-werkzeug-700.jpg" alt="Monteur lädt Werkzeugkisten in den Lieferwagen" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Montage · Werkzeug wird geladen</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 468px"
+                  data-src="assets/galeria/team-werkstatt-1400.jpg" data-cap="Team · unsere Schreinerei">
+            <img src="assets/galeria/peq/team-werkstatt-700.jpg" alt="Vier Schreiner von LERI in Arbeitskleidung in der Werkstatt" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Team · unsere Schreinerei</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 332px"
+                  data-src="assets/galeria/portrait-1400.jpg" data-cap="Team · bei uns in der Werkstatt">
+            <img src="assets/galeria/peq/portrait-700.jpg" alt="Schreiner von LERI im Arbeitshemd in der Werkstatt" width="700" height="657" loading="lazy" decoding="async">
+            <span class="tira__cap">Team · bei uns in der Werkstatt</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 468px"
+                  data-src="assets/galeria/betrieb-kanzleistrasse-1400.jpg" data-cap="Unser Betrieb an der Kanzleistrasse 221">
+            <img src="assets/galeria/peq/betrieb-kanzleistrasse-700.jpg" alt="Aussenansicht des Betriebsgebäudes der LERI Schreinerei in Zürich" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Unser Betrieb an der Kanzleistrasse 221</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 416px"
+                  data-src="assets/galeria/lieferwagen-1400.jpg" data-cap="Unser Montagefahrzeug">
+            <img src="assets/galeria/peq/lieferwagen-700.jpg" alt="Lieferwagen der LERI Schreinerei mit Firmenaufschrift" width="640" height="480" loading="lazy" decoding="async">
+            <span class="tira__cap">Unser Montagefahrzeug</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 416px"
+                  data-src="assets/galeria/theke-naturstein-1400.jpg" data-cap="Innenausbau · Theke mit Naturstein">
+            <img src="assets/galeria/peq/theke-naturstein-700.jpg" alt="Theke mit dunkler Natursteinfront und Messingblende" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Theke mit Naturstein</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 234px"
+                  data-src="assets/galeria/bad-gruen-1400.jpg" data-cap="Innenausbau · Bad mit grünen Fliesen">
+            <img src="assets/galeria/peq/bad-gruen-700.jpg" alt="Badezimmer mit grünen Wandfliesen, Rundspiegel und Waschtisch" width="700" height="933" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Bad mit grünen Fliesen</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 468px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/montage-treppenhaus-1400.jpg" data-cap="Montage · Platte im Treppenhaus">
+            <img src="assets/galeria/peq/montage-treppenhaus-700.jpg" alt="Monteur trägt eine Holzplatte über die Treppe zu einem Einsatz" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Montage · Platte im Treppenhaus</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 468px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/montage-werkzeug-1400.jpg" data-cap="Montage · Werkzeug wird geladen">
+            <img src="assets/galeria/peq/montage-werkzeug-700.jpg" alt="Monteur lädt Werkzeugkisten in den Lieferwagen" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Montage · Werkzeug wird geladen</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 468px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/team-werkstatt-1400.jpg" data-cap="Team · unsere Schreinerei">
+            <img src="assets/galeria/peq/team-werkstatt-700.jpg" alt="Vier Schreiner von LERI in Arbeitskleidung in der Werkstatt" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Team · unsere Schreinerei</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 332px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/portrait-1400.jpg" data-cap="Team · bei uns in der Werkstatt">
+            <img src="assets/galeria/peq/portrait-700.jpg" alt="Schreiner von LERI im Arbeitshemd in der Werkstatt" width="700" height="657" loading="lazy" decoding="async">
+            <span class="tira__cap">Team · bei uns in der Werkstatt</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 468px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/betrieb-kanzleistrasse-1400.jpg" data-cap="Unser Betrieb an der Kanzleistrasse 221">
+            <img src="assets/galeria/peq/betrieb-kanzleistrasse-700.jpg" alt="Aussenansicht des Betriebsgebäudes der LERI Schreinerei in Zürich" width="700" height="467" loading="lazy" decoding="async">
+            <span class="tira__cap">Unser Betrieb an der Kanzleistrasse 221</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 416px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/lieferwagen-1400.jpg" data-cap="Unser Montagefahrzeug">
+            <img src="assets/galeria/peq/lieferwagen-700.jpg" alt="Lieferwagen der LERI Schreinerei mit Firmenaufschrift" width="640" height="480" loading="lazy" decoding="async">
+            <span class="tira__cap">Unser Montagefahrzeug</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 416px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/theke-naturstein-1400.jpg" data-cap="Innenausbau · Theke mit Naturstein">
+            <img src="assets/galeria/peq/theke-naturstein-700.jpg" alt="Theke mit dunkler Natursteinfront und Messingblende" width="700" height="525" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Theke mit Naturstein</span>
+          </button>
+          <button class="tira__pieza" type="button" style="--w: 234px" aria-hidden="true" tabindex="-1"
+                  data-src="assets/galeria/bad-gruen-1400.jpg" data-cap="Innenausbau · Bad mit grünen Fliesen">
+            <img src="assets/galeria/peq/bad-gruen-700.jpg" alt="Badezimmer mit grünen Wandfliesen, Rundspiegel und Waschtisch" width="700" height="933" loading="lazy" decoding="async">
+            <span class="tira__cap">Innenausbau · Bad mit grünen Fliesen</span>
+          </button>
+      </div>
+    </div>
+  </div>
+
+    <div class="wrap">
       <p class="ref__nota" data-anim>Es gibt mehr zu sehen, als hier Platz hat: Rufen Sie an unter
         <a href="tel:+41442427266">044 242 72 66</a> und kommen Sie in der Werkstatt vorbei — wir zeigen Ihnen
         gerne weitere Referenzen und Muster.</p>
@@ -318,6 +549,15 @@
           <span>Diese Vorschau ist nicht öffentlich verlinkt und nicht indexiert.</span>
         </div>
       </div>
+      <!-- ══ LO ÚLTIMO DE ABAJO: la línea de Zentraf, en verde y con enlace ══
+           Antes iba flotando en la esquina mientras se hacía scroll. El socio lo pidió
+           así: «que no se mueva mientras scroll, sino que esté abajo en el Footer, en lo
+           último de abajo, con un enlace que cuando le toquen se vaya a la web de
+           nosotros, la de la agencia». El nombre «Zentraf» ES el enlace. -->
+      <p class="pie__zentraf">
+        Entwurf · Vorschau von <a href="https://zentraf.ch" target="_blank" rel="noopener">Zentraf</a>
+        <span>— wir gestalten die neue Website der LERI Schreinerei AG. Diese Seite ist noch nicht veröffentlicht.</span>
+      </p>
     </div>
   </footer>
 

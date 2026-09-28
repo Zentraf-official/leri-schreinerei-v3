@@ -321,20 +321,27 @@
     var caja = $('#luz');
     if (!caja) return;
     var img = $('#luzImg'), cap = $('#luzCap'), cerrar = $('#luzCerrar');
-    function abrir(src, texto, alt) {
+    var ultimo = null;          // la foto que se pulsó: al cerrar, el foco vuelve ahí
+    function abrir(src, texto, alt, disparador) {
       img.src = src; img.alt = alt || texto || '';
       cap.textContent = texto || '';
       caja.hidden = false;
       doc.body.style.overflow = 'hidden';
+      ultimo = disparador || null;
+      // mientras la vista grande está abierta, el carrusel se queda quieto detrás
+      $$('.tira').forEach(function (t) { t.classList.add('tira--quieta'); });
       if (cerrar) cerrar.focus();
     }
     function ocultar() {
       caja.hidden = true; img.src = ''; doc.body.style.overflow = '';
+      $$('.tira').forEach(function (t) { t.classList.remove('tira--quieta'); });
+      // el foco vuelve a la foto: sin esto, quien va con el teclado se pierde
+      if (ultimo && ultimo.focus) ultimo.focus();
     }
     $$('[data-src]').forEach(function (b) {
       b.addEventListener('click', function () {
         var im = b.querySelector('img');
-        abrir(b.dataset.src, b.dataset.cap, im ? im.alt : '');
+        abrir(b.dataset.src, b.dataset.cap, im ? im.alt : '', b);
       });
     });
     if (cerrar) cerrar.addEventListener('click', ocultar);
@@ -342,7 +349,24 @@
     doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !caja.hidden) ocultar(); });
   }
 
-  /* ══ 8 · DETALLES MENORES ══ */
+  /* ══ 8 · EL CARRUSEL: se para al tocar (en el móvil no hay «pasar el ratón») ══
+     El movimiento es CSS puro: aquí solo se añade la pausa. Si este motor no arranca,
+     las tiras se siguen viendo y siguen girando — no se pierde nada. */
+
+  function carrusel() {
+    var tiras = $$('#tiras .tira');
+    if (!tiras.length) return;
+    tiras.forEach(function (t) {
+      var reloj = null;
+      t.addEventListener('touchstart', function () {
+        t.classList.add('tira--quieta');
+        clearTimeout(reloj);
+        reloj = setTimeout(function () { t.classList.remove('tira--quieta'); }, 7000);
+      }, { passive: true });
+    });
+  }
+
+  /* ══ 9 · DETALLES MENORES ══ */
 
   function detalles() {
     // el año del pie, siempre el de hoy
@@ -361,7 +385,7 @@
     });
   }
 
-  /* ══ 9 · ARRANQUE ══ */
+  /* ══ 10 · ARRANQUE ══ */
 
   function arrancar() {
     detalles();
@@ -369,6 +393,7 @@
     scrollUI();
     formulario();
     luz();
+    carrusel();
     carga();
     window.__leriListo = true;
   }
