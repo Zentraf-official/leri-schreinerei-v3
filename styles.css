@@ -177,7 +177,9 @@ html.js .progreso{display:block}
 .pastilla--claro i{background:#fff}
 
 /* cabeza de bloque centrada */
-.cabeza{text-align:center; max-width:720px; margin:0 auto 52px}
+/* 780 px, medidos: con 720 el titular «Kleinigkeiten, die wir auch machen» dejaba
+   «machen» solo en la segunda línea, y eso se ve mal en una web de escaparate */
+.cabeza{text-align:center; max-width:780px; margin:0 auto 52px}
 .cabeza .pastilla{margin-bottom:20px}
 .cabeza h2{font-size:clamp(1.95rem,3.3vw,2.95rem); margin-bottom:14px}
 .cabeza p{font-size:1.02rem; color:var(--gris-texto); margin:0 auto; max-width:600px}
@@ -315,9 +317,12 @@ html.js .progreso{display:block}
 .cta__media{position:absolute; inset:0}
 .cta__media img{width:100%; height:100%; object-fit:cover; object-position:50% 38%}
 .cta__velo{position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,18,13,.62),rgba(10,18,13,.78))}
+/* width:100% para que el panel no se encoja al ancho de su propio texto: sin eso el
+   titular se partía y «Projekt.» quedaba solo en la segunda línea */
 .cta__panel{position:relative; z-index:2; background:rgba(255,255,255,.96);
   -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
-  border-radius:var(--r-g); padding:52px 44px 46px; box-shadow:var(--sombra-alta); max-width:760px}
+  border-radius:var(--r-g); padding:52px 44px 46px; box-shadow:var(--sombra-alta);
+  width:100%; max-width:830px}
 .cta__panel .pastilla{margin-bottom:22px}
 .cta h2{font-size:clamp(1.9rem,3.2vw,2.7rem); margin-bottom:16px}
 .cta p{font-size:.95rem; color:var(--gris-texto); max-width:520px; margin:0 auto 28px}
