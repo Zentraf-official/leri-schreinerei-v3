@@ -328,13 +328,10 @@
       caja.hidden = false;
       doc.body.style.overflow = 'hidden';
       ultimo = disparador || null;
-      // mientras la vista grande está abierta, el carrusel se queda quieto detrás
-      $$('.tira').forEach(function (t) { t.classList.add('tira--quieta'); });
       if (cerrar) cerrar.focus();
     }
     function ocultar() {
       caja.hidden = true; img.src = ''; doc.body.style.overflow = '';
-      $$('.tira').forEach(function (t) { t.classList.remove('tira--quieta'); });
       // el foco vuelve a la foto: sin esto, quien va con el teclado se pierde
       if (ultimo && ultimo.focus) ultimo.focus();
     }
@@ -349,22 +346,11 @@
     doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !caja.hidden) ocultar(); });
   }
 
-  /* ══ 8 · EL CARRUSEL: se para al tocar (en el móvil no hay «pasar el ratón») ══
-     El movimiento es CSS puro: aquí solo se añade la pausa. Si este motor no arranca,
-     las tiras se siguen viendo y siguen girando — no se pierde nada. */
-
-  function carrusel() {
-    var tiras = $$('#tiras .tira');
-    if (!tiras.length) return;
-    tiras.forEach(function (t) {
-      var reloj = null;
-      t.addEventListener('touchstart', function () {
-        t.classList.add('tira--quieta');
-        clearTimeout(reloj);
-        reloj = setTimeout(function () { t.classList.remove('tira--quieta'); }, 7000);
-      }, { passive: true });
-    });
-  }
+  /* ══ 8 · LA GALERÍA NO TIENE MOTOR — y es a propósito ══
+     Norma del socio (ZENTRAF-DISENO.md, «Movimiento de las WEBS DE CLIENTE»): nada de
+     movimiento continuo. La rejilla de fotos se ve quieta y sin una línea de JavaScript:
+     aquí no hay nada que arrancar, y por eso no puede quedarse a medias.
+     Lo único que hace el motor es abrir la vista ampliada al pulsar una foto (arriba). */
 
   /* ══ 9 · DETALLES MENORES ══ */
 
@@ -393,7 +379,6 @@
     scrollUI();
     formulario();
     luz();
-    carrusel();
     carga();
     window.__leriListo = true;
   }

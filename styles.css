@@ -397,61 +397,35 @@ html.js .progreso{display:block}
   display:flex; align-items:center; gap:9px}
 .pastillas-rejilla li::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--verde); flex:none}
 
-/* galería de proyectos */
-.galeria{display:grid; grid-template-columns:repeat(6,1fr); gap:18px}
-.pieza{grid-column:span 2; border-radius:var(--r); overflow:hidden; position:relative;
+/* ══ GALERÍA DE PROYECTOS: LA REJILLA QUIETA ══════════════════════════════════
+   Norma del socio (ZENTRAF-DISENO.md, «Movimiento de las WEBS DE CLIENTE»): nada de
+   movimiento continuo, el movimiento solo responde a lo que hace el usuario, y las
+   fotos quietas en rejilla. Aquí hubo un carrusel de tres tiras que se movían SOLAS
+   y el socio lo quitó el mismo día: «demasiado movimiento».
+   Reglas que cumple esta rejilla:
+     · Se ve la foto ENTERA, sin recortar y sin franjas: la pieza mide lo que mide su
+       foto. Por eso nada de `object-fit:cover` (recorta) ni de `contain` (deja
+       franjas blancas).
+     · Las fotos van EN ORDEN (el de los originales): primero de izquierda a derecha
+       y después hacia abajo, sin saltos y sin piezas repetidas.
+     · No hay ni una animación: nada se mueve solo. Lo único que se mueve es lo que
+       provoca el usuario al pasar el ratón o al pulsar una foto (vista ampliada).
+     · Sin JavaScript se ve igual: nada de esto depende del motor.
+   Cómo está hecho: una fila de piezas que se ajusta sola (`flex`). Cada pieza crece
+   en proporción a lo ancha que es su foto (`--ar` = ancho ÷ alto, que lo escribe
+   `fotos-galeria-leri.py`), así que todas las fotos de una misma fila acaban con la
+   MISMA altura y la fila llena el ancho justo, sin recortar ninguna. El tope de
+   520 px evita que una foto sola en la última fila se haga gigante. */
+.galeria{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start}
+.pieza{flex:var(--ar,1) 1 calc(var(--ar,1) * 300px); max-width:calc(var(--ar,1) * 520px);
+  border-radius:var(--r-p); overflow:hidden; position:relative;
   box-shadow:var(--sombra); background:var(--blanco); padding:0; border:0; cursor:zoom-in; text-align:left;
   transition:transform .35s var(--ease), box-shadow .35s var(--ease)}
 .pieza:hover{transform:translateY(-5px); box-shadow:var(--sombra-alta)}
-.pieza--ancha{grid-column:span 3}
-.pieza img{width:100%; height:100%; object-fit:cover; aspect-ratio:4/3}
-.pieza--alta img{aspect-ratio:4/5}
+.pieza:focus-visible{outline:3px solid var(--verde); outline-offset:3px}
+.pieza img{display:block; width:100%; height:auto}
 .pieza__cap{position:absolute; left:0; right:0; bottom:0; padding:34px 20px 16px;
   background:linear-gradient(180deg,transparent,rgba(10,18,13,.72)); color:#fff; font-size:.82rem; font-weight:600}
-
-/* ══ EL CARRUSEL DE PROYECTOS ══════════════════════════════════════════════════
-   Lo que pidió el socio: «yo quiero que la galería sea un carrusel de imágenes muy
-   duro en movimiento». Tres tiras de fotos que se mueven SOLAS, sin parar, sin
-   librerías: CSS puro con `@keyframes` sobre la pista duplicada dos veces.
-   Reglas que cumple:
-     · Sin JavaScript se ven las fotos igual (el movimiento no depende del motor).
-     · Al pasar el ratón por encima se para; al tocar en el móvil también (lo hace
-       app.js poniendo `.tira--quieta`, que solo añade «pausa»).
-     · El ancho de cada pieza sale de la foto (`--w`), así que no se recorta nada;
-       por eso las dos copias miden exactamente lo mismo y el salto es invisible:
-       cada pieza lleva su propio margen y NO se usa `gap` (con `gap`, la mitad de
-       la pista no coincide con una copia y el bucle da un tirón de 9 px).
-     · `.tiras` recorta el desbordamiento: nunca hay scroll horizontal (el revisor
-       lo comprueba en móvil).
-   Las duraciones las calcula `herramientas/fotos-galeria-leri.py` a partir del ancho
-   real de cada tira y de la velocidad pedida (62 / 46 / 74 px por segundo). */
-.tiras{overflow:hidden; padding:6px 0 0}
-.tira{padding:14px 0}
-.tira__pista{display:flex; width:max-content; will-change:transform}
-.tira__pieza{position:relative; flex:0 0 auto;
-  width:calc(var(--w) * var(--k,1)); height:calc(var(--alto,270px) * var(--k,1));
-  margin-right:18px; padding:0; border:0; background:var(--fondo); cursor:zoom-in;
-  border-radius:var(--r); overflow:hidden; box-shadow:var(--sombra);
-  transition:transform .35s var(--ease), box-shadow .35s var(--ease)}
-.tira__pieza:hover,.tira__pieza:focus-visible{transform:translateY(-5px) scale(1.012);
-  box-shadow:var(--sombra-alta); outline:none}
-.tira__pieza:focus-visible{outline:3px solid var(--verde); outline-offset:3px}
-.tira__pieza img{width:100%; height:100%; object-fit:cover; display:block}
-.tira__cap{position:absolute; left:0; right:0; bottom:0; padding:30px 16px 13px;
-  background:linear-gradient(180deg,transparent,rgba(10,18,13,.74)); color:#fff;
-  font-size:.78rem; font-weight:600; text-align:left;
-  opacity:0; transform:translateY(8px); transition:opacity .3s var(--ease), transform .3s var(--ease)}
-.tira__pieza:hover .tira__cap,.tira__pieza:focus-visible .tira__cap{opacity:1; transform:none}
-/* el ratón encima: se para. Y con el teclado dentro, también. */
-.tira:hover .tira__pista,
-.tira:focus-within .tira__pista,
-.tira--quieta .tira__pista{animation-play-state:paused}
-.tira--a .tira__pista{animation:leria 51s linear infinite}
-.tira--b .tira__pista{animation:lerib 64s linear infinite}
-.tira--c .tira__pista{animation:leric 44s linear infinite}
-@keyframes leria{from{transform:translateX(0)} to{transform:translateX(-50%)}}
-@keyframes lerib{from{transform:translateX(-50%)} to{transform:translateX(0)}}
-@keyframes leric{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 
 /* vista ampliada */
 .luz{position:fixed; inset:0; z-index:260; background:rgba(10,14,11,.92); display:flex;
@@ -517,9 +491,10 @@ p a:not(.btn), address a:not(.btn), .nota-caja a, .ref__nota a{
   .pasos{grid-template-columns:1fr}
   .pie__top{grid-template-columns:1fr 1fr; gap:28px}
   .pastillas-rejilla{grid-template-columns:repeat(3,1fr)}
-  .galeria{grid-template-columns:repeat(4,1fr)}
-  .pieza{grid-column:span 2}
-  .pieza--ancha{grid-column:span 2}
+  /* menos ancho: las piezas se piden un poco más pequeñas, así siguen entrando dos o
+     tres por fila en vez de quedarse una sola foto gigante por fila */
+  .galeria{gap:18px}
+  .pieza{flex-basis:calc(var(--ar,1) * 270px)}
 }
 @media (max-width:900px){
   .fila{grid-template-columns:1fr; gap:22px; padding:16px 16px 24px}
@@ -542,8 +517,10 @@ p a:not(.btn), address a:not(.btn), .nota-caja a, .ref__nota a{
   .servicios__rejilla{grid-template-columns:1fr}
   .referencias__rejilla{grid-template-columns:1fr}
   .pastillas-rejilla{grid-template-columns:1fr 1fr}
-  .galeria{grid-template-columns:1fr}
-  .pieza,.pieza--ancha{grid-column:span 1}
+  /* la galería, en el móvil: una sola columna y las fotos lo más grandes posible.
+     El socio lo pidió así para su público: «quietas, grandes y en orden». */
+  .galeria{gap:16px}
+  .pieza{flex-basis:100%; max-width:none}
   .fila2{grid-template-columns:1fr}
   .cabeza{margin-bottom:38px}
   .hero h1{font-size:clamp(2.05rem,8.4vw,2.6rem)}
@@ -560,24 +537,13 @@ p a:not(.btn), address a:not(.btn), .nota-caja a, .ref__nota a{
   .legal-sec{padding:28px 22px}
   .datos,.form{padding:24px 20px}
   .carga__logo{height:62px}
-  /* el carrusel, más pequeño pero moviéndose igual: 0,55 del alto y del ancho */
-  .tiras{--k:.55; padding-top:0}
-  .tira{padding:9px 0}
-  .tira__pieza{margin-right:12px; border-radius:var(--r-p)}
-  .tira__cap{opacity:1; transform:none; font-size:.7rem; padding:22px 12px 10px}
 }
 
 /* quien pida menos movimiento, no lo recibe.
-   Y el carrusel no se queda a medias: se para y se convierte en una rejilla normal,
-   con cada foto UNA sola vez (las copias que existen para que el bucle sea continuo
-   se esconden; si no, se verían las 24 fotos dos veces). */
+   La galería ya es una rejilla quieta de por sí: aquí solo se le quita el único
+   movimiento que le queda, el de levantar la pieza al pasar el ratón. */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms!important; transition-duration:.001ms!important}
   html{scroll-behavior:auto}
-  .tiras{--k:.62; overflow:visible}
-  .tira{padding:0}
-  .tira__pista{animation:none!important; flex-wrap:wrap; width:100%; justify-content:center}
-  .tira__pieza[aria-hidden="true"]{display:none}
-  .tira__cap{opacity:1; transform:none}
-  .tira__pieza:hover,.tira__pieza:focus-visible{transform:none}
+  .pieza:hover,.pieza:focus-visible{transform:none}
 }
