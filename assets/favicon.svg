@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Icono de la web: el logotipo REAL de LERI Schreinerei AG (su verde #007B35 y su
-     gris #565655, y su R sin asta izquierda). Misma geometría que logo.svg, encuadrada
-     en un cuadrado para que sirva de favicon. Ningún monograma inventado. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="LERI Schreinerei AG">
+<!-- Icono de la web: EL MISMO logotipo que lleva la web (assets/logo.svg, su verde
+     #007B35 y su gris #565655, y su R sin asta izquierda), encuadrado para servir de
+     favicon. El vector va incrustado tal cual; lo único que se añade es la placa
+     blanca, porque su gris desaparece en las pestañas oscuras. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512"
+     role="img" aria-label="LERI Schreinerei AG">
   <title>LERI Schreinerei AG</title>
   <rect width="512" height="512" rx="96" fill="#ffffff"/>
-  <svg x="46" y="66" width="420" height="380" viewBox="29 29 281 254" preserveAspectRatio="xMidYMid meet">
-    <path fill="#007B35" d="M29 29h12v168h66v12H29z"/>
-    <path fill="#007B35" d="M115 29h81v12h-69v70h57v9h-57v78h73v11h-85z"/>
-    <path fill="#007B35" d="M298 29h12v180h-12z"/>
-    <g fill="#565655">
-      <path d="M209 29h37c27 0 37 18 37 45 0 27-10 36-28 36h-46v-9h37c15 0 23-11 23-27 0-24-7-33-23-33h-37z"/>
-      <path d="M234 119h14l42 89h-14z"/>
-    </g>
-    <text x="29" y="283" fill="#565655"
-          font-family="HelveticaNeue-Light,'Helvetica Neue',Helvetica,Arial,sans-serif"
-          font-size="66" font-weight="300" textLength="281" lengthAdjust="spacingAndGlyphs">SCHREINEREI</text>
+  <!-- el mismo encuadre que el PNG (margen 58, hueco 396), para que el icono se vea
+       igual lo pida el navegador en vector o en mapa de bits -->
+  <svg x="58" y="77" width="396" height="358" viewBox="29 29 281 254" preserveAspectRatio="xMidYMid meet">
+    <!-- L -->
+      <path fill="#007B35" d="M29 29h12v168h66v12H29z"/>
+      <!-- E -->
+      <path fill="#007B35" d="M115 29h81v12h-69v70h57v9h-57v78h73v11h-85z"/>
+      <!-- I -->
+      <path fill="#007B35" d="M298 29h12v180h-12z"/>
+      <!-- R sin asta izquierda (el rasgo propio de su logo) -->
+      <g fill="#565655">
+        <path d="M209 29h37c27 0 37 18 37 45 0 27-10 36-28 36h-46v-9h37c15 0 23-11 23-27 0-24-7-33-23-33h-37z"/>
+        <path d="M234 119h14l42 89h-14z"/>
+      </g>
+      <!-- SCHREINEREI -->
+      <text x="29" y="283" fill="#565655" font-family="HelveticaNeue-Light,'Helvetica Neue',Helvetica,Arial,sans-serif"
+            font-size="66" font-weight="300" textLength="281" lengthAdjust="spacingAndGlyphs">SCHREINEREI</text>
   </svg>
 </svg>
